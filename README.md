@@ -51,6 +51,10 @@ Double \ is needed because you have to escaped the \ in C:\
     example2 and exlude all disk from VM "TestSVR23"
     -IgnorePattern '^(FileSVR1:C:\\|LinuxVM:/|TestSVR23.*)$'
 
+
+
+Example Output:
+
 ![PRTG-VMware-DiskSpace](media/error.png)
 
 
