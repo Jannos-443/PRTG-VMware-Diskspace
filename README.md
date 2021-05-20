@@ -1,6 +1,4 @@
 # PRTG-VMware-Diskspace
-# About
-
 ## Project Owner:
 
 Jannos-443
@@ -53,7 +51,7 @@ Double \ is needed because you have to escaped the \ in C:\
     example2 and exlude all disk from VM "TestSVR23"
     -IgnorePattern '^(FileSVR1:C:\\|LinuxVM:/|TestSVR23.*)$'
 
-![PRTG-VMware-DiskSpace](media/test.png)
+![PRTG-VMware-DiskSpace](media/error.png)
 
 
 VM exceptions
