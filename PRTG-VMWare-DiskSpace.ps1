@@ -45,6 +45,12 @@
     .PARAMETER ErrorLimit
     Disk Space in Percent for an Error
     
+    .PARAMETER ExcludeFolder
+    Regular expression to describe a VMWare Folder to exclude
+
+    .PARAMETER ExcludeRessource
+    Regular expression to describe a VMWare Ressource to exclude.
+
     .EXAMPLE
     Sample call from PRTG EXE/Script Advanced
     PRTG-VMware-DiskSpace.ps1 -ViServer '%VCenter%' -User '%Username%' -Password '%PW%' -IgnorePattern '^(TestVM:E:\\)$'
@@ -60,7 +66,9 @@ param(
     [string]$ViServer = '',
     [string]$User = '',
     [string]$Password = '',
-    [string]$IgnorePattern = '', #Example: '^(Mailstore2:E:\\)$' double Backslash for to excape it.
+    [string]$IgnorePattern = '',
+    [string]$ExcludeFolder = '',
+    [string]$ExcludeRessource = '',
     [int]$WarningLimit = 10, #percent Free
     [int]$ErrorLimit = 5 #percent free
 )
@@ -152,7 +160,7 @@ $ErrorCount = 0
 $ErrorText = "Error: "
 
 # hardcoded list that applies to all hosts
-$IgnoreScript = '^(TestExclude:C:\\)$' 
+$IgnoreScript = '^(TestServer123:E:\\)$' 
 # \ has to be Escaped with another \
 
 ForEach ($VM in $VMs)
@@ -162,8 +170,19 @@ ForEach ($VM in $VMs)
         $space = ($disk.FreeSpace/$disk.Capacity) * 100
         $percentfree = [math]::Round($space,0)
         
-        #Excludes
-        $Text = "$($vm.name):$($disk.diskpath)"
+        #Exclude VMs
+        if($ExcludeFolder -match $VM.Folder.Name)
+            {
+            break
+            }
+
+        if($ExcludeRessource -match $VM.ResourcePool.Name)
+            {
+            break
+            }
+
+        #Exclude Disks
+        $Text = "$($VM.name):$($disk.diskpath)"
         if($IgnorePattern -ne "")
             {  
             if($Text -match $IgnorePattern)
