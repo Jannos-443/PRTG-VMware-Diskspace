@@ -6,7 +6,8 @@ Jannos-443
 ## Project Details
   VMWare VM disk space monitoring
 
-  Using VMware PowerCLI this Script checks VMware disk space
+  Using VMware PowerCLI this Script checks disk space of every VM.
+
   Exceptions can be made within this script by changing the variable $IgnoreScript. This way, the change applies to all PRTG sensors 
   based on this script. If exceptions have to be made on a per sensor level, the script parameter $IgnorePattern can be used.
 
