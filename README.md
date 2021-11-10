@@ -24,7 +24,7 @@ Jannos-443
 
    | Settings | Value |
    | --- | --- |
-   | EXE/Script | PRTG-VMware-DiskSpace.ps1 |
+   | EXE/Script Advanced | PRTG-VMware-DiskSpace.ps1 |
    | Parameters | -ViServer 'yourVCenter' -User 'yourUser' -Password 'yourPassword' |
    | Scanning Interval | 30 minutes |
 
